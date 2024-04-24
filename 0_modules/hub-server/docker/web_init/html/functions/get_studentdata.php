@@ -34,14 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $exit .= '<b>Acceso IAM a FortiWEB Cloud y FortiGSLB:</b>';
                         $exit .= '</p>';
                         $exit .= '  accountid  = "' . $row['accountid'] . '"<br>';
-                        $exit .= '  user_id = "' . $row['user_id'] . '"';
-                        $exit .= '  user_password = "' . $row['user_password'] . '"';
+                        $exit .= '  user_id = "' . $row['user_id'] . '"<br>';
+                        $exit .= '  user_password = "' . $row['user_password'] . '"<br>';
                         $exit .= '<p>';
                         $exit .= '<b>Acceso a tu fortigate:</b>';
                         $exit .= '</p>';
                         $exit .= '  fgt_url  = https://' . $row['fgt_ip'] . ':8443 <br>';
-                        $exit .= '  fgt_user = "' . $row['fgt_user'] . '"';
-                        $exit .= '  fgt_pass = "' . $row['fgt_password'] . '"';
+                        $exit .= '  fgt_user = "' . $row['fgt_user'] . '"<br>';
+                        $exit .= '  fgt_pass = "' . $row['fgt_password'] . '"<br>';
                         $exit .= '<p>';
                         $exit .= '<b>FQDN de tus aplicacion: </b>';
                         $exit .= '</p>';
