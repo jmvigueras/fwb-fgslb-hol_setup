@@ -22,7 +22,7 @@
   <body>
     <h1><span style="color:Red">Fortinet</span> - FortiWEB Cloud y FortiGSLB Hands-on-Lab</h1>
     <h2>Cloud workshop</h2>
-    <h3>Guía y repositorio del laboratorio: <a href="https://github.com/jmvigueras/fwb-fgslb-hol_setup">FortiWEB Cloud y FortiGSLB HoL GitRepo</a></h3>
+    <h3>Guía y repositorio del laboratorio: <a href="https://github.com/jmvigueras/fwb-fgslb-hol">FortiWEB Cloud y FortiGSLB HoL GitRepo</a></h3>
     <hr/>
     <h3>Student data: </h3>
         <label for="email">Enter your email:</label>

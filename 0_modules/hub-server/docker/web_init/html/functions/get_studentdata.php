@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $dbuser = $_ENV['DBUSER'];
             $dbpass = $_ENV['DBPASS'];
             $db = $_ENV['DBNAME'];
-            $table = $_ENV['DBTABLE'];   
+            $table = $_ENV['DBTABLE'];
 
             #echo $dbhost. $dbuser. $dbpass. $db;
             $con = mysqli_connect($dbhost,$dbuser,$dbpass,$db);
@@ -31,30 +31,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     while($row = mysqli_fetch_array($result))
                     {
                         $exit = '<p>';
-                        $exit .= '<b>Variables para actualizar O_UPDATE.tf:</b>';
+                        $exit .= '<b>Acceso IAM a FortiWEB Cloud y FortiGSLB:</b>';
                         $exit .= '</p>';
-                        $exit .= '<br>';
-                        $exit .= '  user_id = "' . $row['user_id'] . '"<br>';
-                        $exit .= '<br>';
-                        $exit .= '  region = "' . $row['region']. '"<br>';
-                        $exit .= '<br>';
-                        $exit .= '  user_vpc_cidr = "' . $row['vpc_cidr']. '"<br>';
-                        $exit .= '<br>';
-                        $exit .= '  externalid_token = "' . $row['externalid_token'] . '"<br>';
-                        $exit .= '<br>';
-                        $exit .= '  account_id = "' . $row['accountid'] . '"';
+                        $exit .= '  accountid  = "' . $row['accountid'] . '"<br>';
+                        $exit .= '  user_id = "' . $row['user_id'] . '"';
+                        $exit .= '  user_password = "' . $row['user_password'] . '"';
                         $exit .= '<p>';
-                        $exit .= '<b>Variables para actualizar terraform.tfvars:</b>';
+                        $exit .= '<b>Acceso a tu fortigate:</b>';
                         $exit .= '</p>';
-                        $exit .= '  access_key = "' . $row['access_key'] . '"<br>';
-                        $exit .= '  secret_key = "' . $row['secret_key'] . '"';
+                        $exit .= '  fgt_url  = https://' . $row['fgt_ip'] . ':8443 <br>';
+                        $exit .= '  fgt_user = "' . $row['fgt_user'] . '"';
+                        $exit .= '  fgt_pass = "' . $row['fgt_password'] . '"';
                         $exit .= '<p>';
-                        $exit .= '<b>Acceso a AWS Cloud9 (IAM user): </b>';
+                        $exit .= '<b>FQDN de tus aplicacion: </b>';
                         $exit .= '</p>';
-                        $exit .= '  url  = "' . $row['cloud9_url'] . '"<br>';
-                        $exit .= '  Account ID = "' . $row['accountid'] . '"<br>';
-                        $exit .= '  IAM user name = "' . $row['user_id'] . '"<br>';
-                        $exit .= '  Password = "' . $row['user_password'] . '"';
+                        $exit .= '  dvwa_url  = http://' . $row['fgt_ip'] . ':31000 <br>';
+                        $exit .= '  swagger_url  = http://' . $row['fgt_ip'] . ':31001 <br>';
                         $exit .= '<p>';
                         $exit .= '<p>';
                     }

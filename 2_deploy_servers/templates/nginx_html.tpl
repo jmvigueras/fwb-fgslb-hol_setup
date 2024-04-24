@@ -3,6 +3,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
     <title>Portal de acceso Cloud workshop – Fortinet </title>
+    <!-- CSS styles -->
+    <link rel="stylesheet" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>  
 	    function redirect(){

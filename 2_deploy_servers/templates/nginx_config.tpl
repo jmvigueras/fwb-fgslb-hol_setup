@@ -7,7 +7,7 @@ server {
         index  index.html index.htm;
     }
 
-    location /${externalid_token}/ {
+    location /${lab_token}/ {
    	proxy_pass 	   http://frontweb/; 
         proxy_redirect     off;
         proxy_set_header   Host $$host;

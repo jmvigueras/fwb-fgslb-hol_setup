@@ -49,8 +49,8 @@ data "template_file" "srv_user_data_dockerfile" {
 data "template_file" "srv_user_data_nginx_config" {
   template = file("./templates/nginx_config.tpl")
   vars = {
-    externalid_token = local.hol_token
-    random_url_db    = local.random_url_db
+    lab_token      = local.lab_token
+    random_url_db  = local.random_url_db
   }
 }
 // Create nginx html

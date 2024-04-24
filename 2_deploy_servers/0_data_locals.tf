@@ -39,9 +39,10 @@ locals {
   # Server LAB variables
   #--------------------------------------------------------------------------------------------
   # LAB server FQDN
-  lab_fqdn = "hol.fortidemoscloud.com"
+  //lab_fqdn = "hol.fortidemoscloud.com"
+  lab_fqdn = local.hub_fgt
 
-  hol_token = trimspace(random_string.hol_token.result)
+  lab_token = trimspace(random_string.lab_token.result)
 
   # Instance type 
   lab_srv_type = "t3.xlarge"
@@ -69,6 +70,7 @@ locals {
   user_vm_ni_ids      = data.terraform_remote_state.deploy_fortigates.outputs.user_vm_ni_ids
   user_fgt_eip_public = data.terraform_remote_state.deploy_fortigates.outputs.user_fgt_eip_public
   hub_bastion_ni      = data.terraform_remote_state.deploy_fortigates.outputs.hub_bastion_ni
+  hub_fgt             = data.terraform_remote_state.deploy_fortigates.outputs.hub["fgt_public"]
 }
 
 # Get state file from day0 deployment
@@ -85,7 +87,7 @@ resource "random_string" "db_url" {
   numeric = false
 }
 # Create random string for access LAB
-resource "random_string" "hol_token" {
+resource "random_string" "lab_token" {
   length  = 30
   special = false
   numeric = false
