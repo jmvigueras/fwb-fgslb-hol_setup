@@ -2,11 +2,12 @@
 output "user_fgts" {
   value = { for k, v in module.user : k => 
     {
-      fgt_mgmt   = "https://${v.fgt_eip_mgmt}:${var.admin_port}"
-      fgt_public = v.fgt_eip_public
-      username   = "admin"
-      password   = v.fgt_id
-      admin_cidr = var.admin_cidr
+      fgt_mgmt    = "https://${v.fgt_eip_mgmt}:${var.admin_port}"
+      fgt_public  = v.fgt_eip_public
+      fgt_api_key = var.api_key
+      username    = "admin"
+      password    = v.fgt_id
+      admin_cidr  = var.admin_cidr
     }
   }
 }

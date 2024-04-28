@@ -3,13 +3,16 @@ output "hub" {
   value = module.r1_hub.hub
 }
 output "r1_users_fgt" {
-  value = { for k, v in module.r1_users_fgt.user_fgts : k => v }
+  value = local.r1_users_fgt
 }
 output "r2_users_fgt" {
-  value = { for k, v in module.r2_users_fgt.user_fgts : k => v }
+  value = local.r2_users_fgt
 }
 output "r3_users_fgt" {
-  value = { for k, v in module.r3_users_fgt.user_fgts : k => v }
+  value = local.r3_users_fgt
+}
+output "users_fgt" {
+  value = local.users_fgt
 }
 
 #-----------------------------------------------------------------------------------------------------

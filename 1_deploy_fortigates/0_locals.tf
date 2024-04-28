@@ -47,4 +47,13 @@ locals {
 
   lab_server_external_port = "80"
   lab_server_mapped_port   = "80"
+
+  #-----------------------------------------------------------------------------------------------------
+  # Outputs
+  #-----------------------------------------------------------------------------------------------------
+  r1_users_fgt = { for k, v in module.r1_users_fgt.user_fgts : k => v }
+  r2_users_fgt = { for k, v in module.r2_users_fgt.user_fgts : k => v }
+  r3_users_fgt = { for k, v in module.r3_users_fgt.user_fgts : k => v }
+
+  users_fgt = merge(local.r1_users_fgt, local.r2_users_fgt, local.r3_users_fgt)
 }

@@ -31,19 +31,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     while($row = mysqli_fetch_array($result))
                     {
                         $exit = '<p>';
-                        $exit .= '<b>Acceso IAM a FortiWEB Cloud y FortiGSLB:</b>';
+                        $exit .= '<b>Acceso a FortiWEB Cloud y FortiGSLB (IAM login):</b>';
                         $exit .= '</p>';
                         $exit .= '  accountid  = "' . $row['accountid'] . '"<br>';
-                        $exit .= '  user_id = "' . $row['user_id'] . '"<br>';
-                        $exit .= '  user_password = "' . $row['user_password'] . '"<br>';
+                        $exit .= '  user_id = "' . $row['forticloud_user'] . '"<br>';
+                        $exit .= '  user_password = "' . $row['forticloud_password'] . '"<br>';
                         $exit .= '<p>';
                         $exit .= '<b>Acceso a tu fortigate:</b>';
                         $exit .= '</p>';
                         $exit .= '  fgt_url  = https://' . $row['fgt_ip'] . ':8443 <br>';
                         $exit .= '  fgt_user = "' . $row['fgt_user'] . '"<br>';
                         $exit .= '  fgt_pass = "' . $row['fgt_password'] . '"<br>';
+                        $exit .= '  fgt_api_key = "' . $row['fgt_api_key'] . '"<br>';
                         $exit .= '<p>';
-                        $exit .= '<b>FQDN de tus aplicacion: </b>';
+                        $exit .= '<b>Acceso a tus aplicaciones: </b>';
                         $exit .= '</p>';
                         $exit .= '  dvwa_url  = http://' . $row['fgt_ip'] . ':31000 <br>';
                         $exit .= '  swagger_url  = http://' . $row['fgt_ip'] . ':31001 <br>';
