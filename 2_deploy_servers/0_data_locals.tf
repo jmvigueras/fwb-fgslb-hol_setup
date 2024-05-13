@@ -6,10 +6,7 @@ locals {
   #-----------------------------------------------------------------------------------------------------
   # General variables
   #-----------------------------------------------------------------------------------------------------
-  prefix = "fwblab"
-
-  # Number of users peer region
-  number_users = 1
+  prefix = "fwb-hol"
 
   r1_region = {
     id  = "eu-west-1"
@@ -39,13 +36,12 @@ locals {
   # Server LAB variables
   #--------------------------------------------------------------------------------------------
   # LAB server FQDN
-  //lab_fqdn = "hol.fortidemoscloud.com"
-  lab_fqdn = local.hub_fgt
+  lab_fqdn = "workshop.fortinetdemo.es"
 
   lab_token = trimspace(random_string.lab_token.result)
 
   # Instance type 
-  lab_srv_type = "t3.xlarge"
+  lab_srv_type = "t3.2xlarge"
 
   # Git repository
   git_uri          = "https://github.com/jmvigueras/fwb-fgslb-hol_setup.git"
@@ -71,6 +67,11 @@ locals {
   user_fgt_eip_public = data.terraform_remote_state.deploy_fortigates.outputs.user_fgt_eip_public
   hub_bastion_ni      = data.terraform_remote_state.deploy_fortigates.outputs.hub_bastion_ni
   hub_fgt             = data.terraform_remote_state.deploy_fortigates.outputs.hub["fgt_public"]
+
+  #-----------------------------------------------------------------------------------------------------
+  # Outputs 
+  #-----------------------------------------------------------------------------------------------------
+  o_users_vms = merge(module.r1_users_vm.user_vms, module.r2_users_vm.user_vms, module.r3_users_vm.user_vms)
 }
 
 # Get state file from day0 deployment

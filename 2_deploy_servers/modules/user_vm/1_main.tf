@@ -21,7 +21,7 @@ data "template_file" "user_vm_userdata" {
 
   template = file("${path.module}/templates/k8s.sh")
   vars = {
-    k8s_version    = "1.24"
+    k8s_version    = "1.28"
     linux_user     = "ubuntu"
     k8s_deployment = data.template_file.k8s_app_deployment[each.key].rendered
   }

@@ -66,3 +66,8 @@ variable "linux_os" {
   type    = string
   default = "ubuntu"
 }
+
+variable "region" {
+  type    = map(string)
+  default = null
+} 

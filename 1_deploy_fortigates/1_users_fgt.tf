@@ -21,6 +21,9 @@ module "r1_users_fgt" {
   app2_external_port = local.app2_external_port
   app1_mapped_port   = local.app1_mapped_port
   app2_mapped_port   = local.app2_mapped_port
+
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 # Crate Users FGT in Region 2
 module "r2_users_fgt" {
@@ -45,6 +48,9 @@ module "r2_users_fgt" {
   app2_external_port = local.app2_external_port
   app1_mapped_port   = local.app1_mapped_port
   app2_mapped_port   = local.app2_mapped_port
+
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 # Crate Users FGT in Region 3
 module "r3_users_fgt" {
@@ -69,6 +75,9 @@ module "r3_users_fgt" {
   app2_external_port = local.app2_external_port
   app1_mapped_port   = local.app1_mapped_port
   app2_mapped_port   = local.app2_mapped_port
+
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 

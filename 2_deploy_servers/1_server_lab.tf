@@ -5,6 +5,7 @@
 module "lab_server" {
   source = "./modules/hub_vm"
 
+  region        = local.r1_region
   prefix        = "${local.prefix}-lab-server"
   keypair       = local.keypair_names["r1"]
   instance_type = local.lab_srv_type
@@ -12,6 +13,9 @@ module "lab_server" {
   user_data     = data.template_file.srv_user_data.rendered
 
   ni_id = local.hub_bastion_ni
+
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 # Create user-data for server
 data "template_file" "srv_user_data" {

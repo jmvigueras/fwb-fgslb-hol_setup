@@ -12,6 +12,9 @@ module "r1_users_vm" {
 
   app1_mapped_port = local.app1_mapped_port
   app2_mapped_port = local.app2_mapped_port
+
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 # Create users VM in Region 2
 module "r2_users_vm" {
@@ -27,6 +30,9 @@ module "r2_users_vm" {
 
   app1_mapped_port = local.app1_mapped_port
   app2_mapped_port = local.app2_mapped_port
+
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 # Create users VM in Region 3
 module "r3_users_vm" {
@@ -42,5 +48,8 @@ module "r3_users_vm" {
 
   app1_mapped_port = local.app1_mapped_port
   app2_mapped_port = local.app2_mapped_port
+
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 

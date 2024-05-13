@@ -29,7 +29,6 @@ provider "aws" {
   region     = local.r3_region["id"]
 }
 
-
 # Access and secret keys to your environment
 variable "access_key" {}
 variable "secret_key" {}

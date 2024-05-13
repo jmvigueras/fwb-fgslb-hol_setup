@@ -24,11 +24,7 @@ variable "spoke_cidr_net" {
 }
 variable "region" {
   type    = map(string)
-  default = {     
-    id  = "eu-west-1"
-    az1 = "eu-west-1a"
-    az2 = "eu-west-1c"
-  }
+  default = null
 } 
 variable "user_vm_ni_ids" {
   type    = map(string)

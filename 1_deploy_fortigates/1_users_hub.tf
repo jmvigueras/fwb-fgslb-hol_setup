@@ -16,5 +16,8 @@ module "r1_hub" {
 
   app_external_port = local.lab_server_external_port
   app_mapped_port   = local.lab_server_mapped_port
+
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
