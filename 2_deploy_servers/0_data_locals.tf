@@ -36,7 +36,7 @@ locals {
   # Server LAB variables
   #--------------------------------------------------------------------------------------------
   # LAB server FQDN
-  lab_fqdn = "workshop.fortinetdemo.es"
+  lab_fqdn = "workshop.fortidemoscloud.com"
 
   lab_token = trimspace(random_string.lab_token.result)
 
