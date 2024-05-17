@@ -18,7 +18,7 @@ JSON_OUTPUT_FILE = "users.json"
 CSV_OUTPUT_FILE = "users.csv"
 PREFIX = "fortixpert"           # FortiCloud IAM users prefix
 DOMAIN = "@fortidemoscloud.com" # Fortimail domain
-#PASSWORD = "abcde"              # update with password assigned to FortiCloudUsers or use generate_password() function
+PASSWORD = "abcde"              # update with password assigned to FortiCloudUsers or use generate_password() function
 
 #------------------------------------------------------------------------------
 # Functions
