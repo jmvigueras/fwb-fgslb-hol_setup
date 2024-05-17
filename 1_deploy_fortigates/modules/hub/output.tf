@@ -16,3 +16,7 @@ output "vpn_hubs" {
 output "hub_bastion_ni" {
   value = aws_network_interface.hub_bastion_ni.id
 }
+
+output "hub_fmail_ni" {
+  value = aws_network_interface.hub_fmail_ni.id
+}

@@ -31,7 +31,11 @@ module "hub_config" {
 
   fgt_extra-config = join("\n",
     [data.template_file.hub_extra_config_lab_server.rendered],
-    [data.template_file.hub_extra_config_lab_server_ssh.rendered]
+    [data.template_file.hub_extra_config_lab_server_ssh.rendered],
+    [data.template_file.hub_extra_config_lab_fmail_ssh.rendered],
+    [data.template_file.hub_extra_config_lab_fmail_https.rendered],
+    [data.template_file.hub_extra_config_lab_fmail_smtp_1.rendered],
+    [data.template_file.hub_extra_config_lab_fmail_smtp_2.rendered]
   )
 
   config_hub = true
@@ -44,7 +48,7 @@ data "template_file" "hub_extra_config_lab_server" {
   template = file("${path.module}/templates/fgt_vip.conf")
   vars = {
     external_ip   = module.hub_vpc.fgt_ni_ips["public"]
-    mapped_ip     = cidrhost(module.hub_vpc.subnet_az1_cidrs["bastion"], 10)
+    mapped_ip     = local.lab_server_ip
     external_port = var.app_external_port
     mapped_port   = var.app_mapped_port
     public_port   = "port1"
@@ -57,12 +61,64 @@ data "template_file" "hub_extra_config_lab_server_ssh" {
   template = file("${path.module}/templates/fgt_vip.conf")
   vars = {
     external_ip   = module.hub_vpc.fgt_ni_ips["public"]
-    mapped_ip     = cidrhost(module.hub_vpc.subnet_az1_cidrs["bastion"], 10)
+    mapped_ip     = local.lab_server_ip
     external_port = "2222"
     mapped_port   = "22"
     public_port   = "port1"
     private_port  = "port2"
     suffix        = "2222"
+  }
+}
+// Create data templates extra-config fgt
+data "template_file" "hub_extra_config_lab_fmail_ssh" {
+  template = file("${path.module}/templates/fgt_vip.conf")
+  vars = {
+    external_ip   = module.hub_vpc.fgt_ni_ips["public"]
+    mapped_ip     = local.fmail_ip
+    external_port = "2223"
+    mapped_port   = "22"
+    public_port   = "port1"
+    private_port  = "port2"
+    suffix        = "2223"
+  }
+}
+// Create data templates extra-config fgt
+data "template_file" "hub_extra_config_lab_fmail_https" {
+  template = file("${path.module}/templates/fgt_vip.conf")
+  vars = {
+    external_ip   = module.hub_vpc.fgt_ni_ips["public"]
+    mapped_ip     = local.fmail_ip
+    external_port = "443"
+    mapped_port   = "443"
+    public_port   = "port1"
+    private_port  = "port2"
+    suffix        = "443"
+  }
+}
+// Create data templates extra-config fgt
+data "template_file" "hub_extra_config_lab_fmail_smtp_1" {
+  template = file("${path.module}/templates/fgt_vip.conf")
+  vars = {
+    external_ip   = module.hub_vpc.fgt_ni_ips["public"]
+    mapped_ip     = local.fmail_ip
+    external_port = "25"
+    mapped_port   = "25"
+    public_port   = "port1"
+    private_port  = "port2"
+    suffix        = "25"
+  }
+}
+// Create data templates extra-config fgt
+data "template_file" "hub_extra_config_lab_fmail_smtp_2" {
+  template = file("${path.module}/templates/fgt_vip.conf")
+  vars = {
+    external_ip   = module.hub_vpc.fgt_ni_ips["public"]
+    mapped_ip     = local.fmail_ip
+    external_port = "587"
+    mapped_port   = "587"
+    public_port   = "port1"
+    private_port  = "port2"
+    suffix        = "587"
   }
 }
 // Create FGT
@@ -80,13 +136,23 @@ module "hub" {
   fgt_ni_ids = module.hub_vpc.fgt_ni_ids
   fgt_config = module.hub_config.fgt_config
 }
-// Create NIC for Users VM
+// Create NIC for Server LAB VM
 resource "aws_network_interface" "hub_bastion_ni" {
   subnet_id         = module.hub_vpc.subnet_az1_ids["bastion"]
   security_groups   = [module.hub_vpc.nsg_ids["bastion"]]
-  private_ips       = [cidrhost(module.hub_vpc.subnet_az1_cidrs["bastion"], 10)]
-  source_dest_check = false
+  private_ips       = [local.lab_server_ip]
+  
   tags = {
     Name = "${var.prefix}-lab-server"
+  }
+}
+// Create NIC for FortiMail
+resource "aws_network_interface" "hub_fmail_ni" {
+  subnet_id         = module.hub_vpc.subnet_az1_ids["bastion"]
+  security_groups   = [module.hub_vpc.nsg_ids["bastion"]]
+  private_ips       = [local.fmail_ip]
+
+  tags = {
+    Name = "${var.prefix}-fmail"
   }
 }

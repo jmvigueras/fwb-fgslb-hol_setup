@@ -8,3 +8,10 @@ output "lab_server_details" {
 output "users_vms" {
   value = local.o_users_vms
 }
+output "fortimail_details" {
+  value = {
+    mgmt_url  = "https://${local.hub_fgt}/admin"
+    users_url = "https://${local.hub_fgt}"
+    id        =  module.fmail.id
+  }
+}

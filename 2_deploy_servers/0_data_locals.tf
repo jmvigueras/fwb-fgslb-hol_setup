@@ -60,12 +60,19 @@ locals {
   }
 
   #-----------------------------------------------------------------------------------------------------
+  # FMAIL details 
+  #-----------------------------------------------------------------------------------------------------
+  fmail_license_type = "payg"
+  fmail_version      = "7.4.2"
+  
+  #-----------------------------------------------------------------------------------------------------
   # Other deployments variables 
   #-----------------------------------------------------------------------------------------------------
   keypair_names       = data.terraform_remote_state.deploy_fortigates.outputs.keypair_names
   user_vm_ni_ids      = data.terraform_remote_state.deploy_fortigates.outputs.user_vm_ni_ids
   user_fgt_eip_public = data.terraform_remote_state.deploy_fortigates.outputs.user_fgt_eip_public
   hub_bastion_ni      = data.terraform_remote_state.deploy_fortigates.outputs.hub_bastion_ni
+  hub_fmail_ni        = data.terraform_remote_state.deploy_fortigates.outputs.hub_fmail_ni
   hub_fgt             = data.terraform_remote_state.deploy_fortigates.outputs.hub["fgt_public"]
 
   #-----------------------------------------------------------------------------------------------------

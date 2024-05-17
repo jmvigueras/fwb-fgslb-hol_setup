@@ -42,3 +42,6 @@ output "user_fgt_eip_public" {
 output "hub_bastion_ni" {
   value = module.r1_hub.hub_bastion_ni
 }
+output "hub_fmail_ni" {
+  value = module.r1_hub.hub_fmail_ni
+}

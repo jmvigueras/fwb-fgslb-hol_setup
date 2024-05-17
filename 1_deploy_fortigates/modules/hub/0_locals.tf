@@ -10,6 +10,9 @@ locals {
     public  = "port1"
     private = "port2"
   }
+
+  lab_server_ip = cidrhost(module.hub_vpc.subnet_az1_cidrs["bastion"], 10)
+  fmail_ip      = cidrhost(module.hub_vpc.subnet_az1_cidrs["bastion"], 11)
   #-----------------------------------------------------------------------------------------------------
   # VPN HUBs variables
   #-----------------------------------------------------------------------------------------------------
